@@ -1,0 +1,39 @@
+.header{
+  &-user{
+    &__name{
+      padding-left: 40px !important;
+    }
+
+    &__avatar{
+      display: inline-block;
+      position: absolute;
+      height: 32px;
+      width: 32px;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border-radius: $globalBorderRadius;
+      overflow: hidden;
+
+      img{
+        width: 100%;
+      }
+    }
+  }
+
+  &-cart{
+    float: left;
+    padding: 5px 0 5px 15px;
+
+    &__title{
+      margin-right: 10px;
+    }
+  }
+}
+
+.navbar-nav {
+  .glyphicon {
+    font-size: 17px;
+  }
+}

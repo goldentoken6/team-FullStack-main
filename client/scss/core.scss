@@ -1,0 +1,22 @@
+@import "variables";
+@import "mixins";
+
+@import "components/fonts";
+@import "components/buttons";
+@import "components/forms";
+@import "components/dropdown";
+@import "common";
+
+
+
+//Importing dashboard layout
+@import "admin-theme";
+@import "dashboard";
+
+//Importing store components
+@import "main.scss";
+@import "components/forms";
+
+@import "../src/**/*.scss";
+
+@import "media";

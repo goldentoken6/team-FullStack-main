@@ -1,0 +1,181 @@
+<h1 class="page-header"><i class="fa fa-filter"></i> Item management</h1>
+
+<div class="row">
+    <form enctype="multipart/form-data" name="form" novalidate>
+        <div class="col-xs-12">
+            <h2>Add a new item</h2>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <label>Image</label>
+            <div class="thumbnail drag-drop-field"
+                 ngf-drop
+                 ngf-select
+                 ngf-multiple="true"
+                 ngf-drag-over-class="dragover"
+                 ng-model="itemsCtrl.item.files"
+                 name="files"
+                 accept="image/*"
+                 ngf-max-size="2MB">
+                <span ng-hide="itemsCtrl.item.files" class="drag-drop-field__message">
+                    <i class="glyphicon glyphicon-download-alt"></i>
+                    <p>Drag & Drop, or click to download.</p>
+                </span>
+
+                <div class="images-preview images-preview_local">
+                    <img class="images-preview__image"
+                         ng-repeat="file in itemsCtrl.item.files"
+                         ng-show="form.files.$valid"
+                         ngf-src="!itemsCtrl.item.files.$error && file">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-md-5">
+            <div class="form-group">
+                <label for="ItemTitle">Title</label>
+                <input type="text"
+                       class="form-control"
+                       id="ItemTitle"
+                       placeholder="Title"
+                       ng-model="itemsCtrl.item.title"
+                       required>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="ItemPrice">Price</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="number"
+                               class="form-control"
+                               id="ItemPrice"
+                               placeholder="Price"
+                               ng-model="itemsCtrl.item.price"
+                               required>
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-6">
+                    <label>Category</label>
+                    <div class="store-dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="categorySelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span ng-show="itemsCtrl.item.category">{{ itemsCtrl.item.category}} </span>
+                            <span ng-hide="itemsCtrl.item.category">Select category</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="categorySelector">
+                            <li ng-repeat="category in itemsCtrl.categories track by $index">
+                                <a ng-click="itemsCtrl.selectCategory(category.name)">{{category.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-xs-12 col-md-4">
+            <div class="form-group">
+                <label for="ItemDescription">Description</label>
+                <textarea class="form-control"
+                          id="ItemDescription"
+                          rows="5"
+                          placeholder="Description"
+                          ng-model="itemsCtrl.item.description"
+                          required></textarea>
+            </div>
+            <button type="submit"
+                    ng-disabled="!form.$valid"
+                    class="btn btn-primary"
+                    ng-click="itemsCtrl.addItem()">Add item</button>
+        </div>
+        <div class="col-xs-12"
+             ng-show="itemsCtrl.message.length">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Error occured</h3>
+                </div>
+                <div class="panel-body">
+                    {{itemsCtrl.message}}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<hr/>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-4">
+        <h2 class="sub-header">All items</h2>
+    </div>
+
+    <div class="col-xs-6 col-sm-4">
+        <div class="input-group items-filter">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Quick filter"
+                   ng-model="itemsCtrl.searchFilter">
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-4">
+        <!-- Split button -->
+        <div class="dropdown pull-right items-filter">
+            <span>Category: </span>
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span ng-show="itemsCtrl.category">{{ itemsCtrl.category}} </span>
+                <span ng-hide="itemsCtrl.category">Select category</span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li ng-repeat="category in itemsCtrl.categories">
+                    <a ng-click="itemsCtrl.filterByCategory(category.name)">{{category.name}}</a>
+                </li>
+            </ul>
+            <button class="btn btn-primary" ng-click="itemsCtrl.getAllItems()">All items</button>
+        </div>
+
+    </div>
+
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in itemsCtrl.items | filter:itemsCtrl.searchFilter | orderBy:true:true">
+            <td>{{ $index + 1 }}</td>
+            <td><a href="#/admin/items/{{item._id}}">
+                <span class="item-edit-thumbnail">
+                    <span class="item-hover-mask">
+                        <i class="glyphicon glyphicon-edit">
+                            <span class="small">Edit</span>
+                        </i>
+                    </span>
+                    <img ng-src="images/items/160/{{ item.images[item.mainImageIndex] }}" class="item-edit-image">{{itemsCtrl.item.hasImage(item)}}
+                </span>
+            </a></td>
+            <td>
+                {{ item.title }} <br/><br/>
+                <b>Category:</b>
+                {{ item.category }}
+            </td>
+            <td>{{ item.shortDescription }}</td>
+            <td>{{ item.price | currency }}</td>
+            <td ng-click="itemsCtrl.deleteItem(item)">
+                <button class="btn btn-default">X</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

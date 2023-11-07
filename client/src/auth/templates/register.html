@@ -1,0 +1,25 @@
+<form class="login-form">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Login</label>
+        <input type="text"
+               class="form-control"
+               id="exampleInputEmail1"
+               placeholder="Enter Your Login"
+               ng-model="authCtrl.user.username">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password"
+               class="form-control"
+               id="exampleInputPassword1"
+               placeholder="Enter Your Password"
+               ng-model="authCtrl.user.password">
+    </div>
+    <button type="submit"
+            class="btn btn-primary"
+            ng-click="authCtrl.register()">Register</button>
+
+    <button ui-sref="auth.login" class="btn btn-default pull-right">Log In</button>
+</form>
+
+

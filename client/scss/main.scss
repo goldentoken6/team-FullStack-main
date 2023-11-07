@@ -1,0 +1,195 @@
+.main-wrapper {
+  padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar-fixed-top{
+  height: $navbarHeight;
+}
+
+#loading-bar {
+  transition: ease all 1.35s;
+}
+
+.label{
+  padding-bottom: .2em;
+}
+
+.bordered-right {
+  border-right: 1px solid rgba(255, 255, 255, 0.67);
+  padding-right: 30px;
+  display: inline-block;
+  padding-left: 2px;
+}
+
+.no-padding{
+  padding: 0;
+}
+
+.hero-spacer {
+  margin-top: 50px;
+}
+
+.promo-header{
+  position: relative;
+  overflow: hidden;
+  height: 135px;
+  padding: 15px 60px;
+  margin: 10px 0 25px;
+  border-radius: $globalBorderRadius;
+  background-color: #00BAF4;
+  color: #FFF;
+
+  &__text {
+    position: relative;
+    z-index: 1;
+    font-size: 20px;
+    @include text-shadow;
+
+    h1{
+      font-size: 46px;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+  }
+  
+  &__image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+  }
+}
+
+.hero-feature {
+  margin-bottom: 30px;
+}
+
+footer {
+  margin: 50px 0;
+}
+
+.item-hover-mask{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #FFF;
+  transition: ease all .3s;
+  opacity: 0;
+
+  &:hover{
+    transition: ease all .3s;
+    opacity: 0.5;
+  }
+
+  i{
+    font-size: 80px;
+    position: absolute;
+    top: -23px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 1em;
+
+  }
+
+  .small{
+    font-size: 16px;
+    position: absolute;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: sans-serif;
+    left: 0;
+    right: 0;
+    bottom: -23px;
+  }
+
+  &_more{
+    height: 220px;
+  }
+}
+
+
+.navbar-main {
+  background-color: #f8f8f8;
+  border-color: #DCDCDC;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+
+  a{
+    color: #47454C;
+  }
+
+  &__item{
+    position: relative;
+
+    &:after{
+      position: absolute;
+      content: '';
+      height: 50%;
+      width: 1px;
+      display: block;
+      border-right: 1px solid #ccc;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+    
+    &:last-child{
+      &:after{
+        display: none;
+      }
+    }
+  }
+}
+
+
+.navbar-brand.navbar-logo {
+  color: #FFF;
+  padding-top: 13px;
+}
+
+
+.toast-top-right{
+  top: 65px;
+}
+
+.thumbnail{
+  &_item{
+    position: relative;
+    border-radius: $globalBorderRadius;
+    border: none;
+    box-shadow: 0 0 30px rgba(0,0,0,.075);
+    
+    &:before{
+      content: '';
+      display: block;
+      padding-bottom: 260px;
+    }
+
+    img{
+      position: absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      padding: 10px 0;
+      max-height: 100%;
+    }
+  }
+
+}
+
+.dropdown.items-filter{
+  float: right;
+}
+
+
+.warning-text{
+  color: $brandWarningColor;
+}

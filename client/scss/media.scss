@@ -1,0 +1,26 @@
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    padding: 0;
+  }
+
+  .item-old-price{
+    font-size: 35px;
+  }
+
+  .item-new-price{
+    font-size: 65px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header-cart{
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown.items-filter{
+    float: left;
+  }
+}
