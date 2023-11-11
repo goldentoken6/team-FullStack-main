@@ -20,7 +20,6 @@ $ cd pet
 $ npm install
 $ npm start
 ```
-
 Your app should now be running on [localhost:4000](http://localhost:4000/).
 
 ## Developing mode
