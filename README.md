@@ -1,6 +1,5 @@
 # MEAN Stack E-commerce
 
-
 Demo: [http://styleworks.herokuapp.com](http://styleworks.herokuapp.com/)
 
 ## Stack of technologies
